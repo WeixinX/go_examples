@@ -32,40 +32,40 @@ func New(logLevel int, out io.Writer) *Log {
 	return l
 }
 
-func (l *Log) Errorln(format string, v ...interface{}) {
+func (l *Log) Errorf(format string, v ...interface{}) {
 	if l.level < ERROR {
 		return
 	}
 	// 若 calldepath = 1，则记录文件为 log.go；若 = 2，则为 Infoln 调用处，后面的类似
-	err := l.Info.Output(2, fmt.Sprintf(format+"\n", v...))
+	err := l.Error.Output(2, fmt.Sprintf(format, v...))
 	if err != nil {
 		return
 	}
 }
 
-func (l *Log) Warnln(format string, v ...interface{}) {
+func (l *Log) Warnf(format string, v ...interface{}) {
 	if l.level < WARN {
 		return
 	}
-	err := l.Info.Output(2, fmt.Sprintf(format+"\n", v...))
+	err := l.Warn.Output(2, fmt.Sprintf(format, v...))
 	if err != nil {
 		return
 	}
 }
-func (l *Log) Infoln(format string, v ...interface{}) {
+func (l *Log) Infof(format string, v ...interface{}) {
 	if l.level < INFO {
 		return
 	}
-	err := l.Info.Output(2, fmt.Sprintf(format+"\n", v...))
+	err := l.Info.Output(2, fmt.Sprintf(format, v...))
 	if err != nil {
 		return
 	}
 }
-func (l *Log) Debugln(format string, v ...interface{}) {
+func (l *Log) Debugf(format string, v ...interface{}) {
 	if l.level < DEBUG {
 		return
 	}
-	err := l.Info.Output(2, fmt.Sprintf(format+"\n", v...))
+	err := l.Debug.Output(2, fmt.Sprintf(format, v...))
 	if err != nil {
 		return
 	}
