@@ -36,7 +36,7 @@ func (l *Log) Errorf(format string, v ...interface{}) {
 	if l.level < ERROR {
 		return
 	}
-	// 若 calldepath = 1，则记录文件为 log.go；若 = 2，则为 Infoln 调用处，后面的类似
+	// 若 calldepath = 1，则记录文件为 log.go；若 = 2，则为 Errorf 调用处，后面的类似
 	err := l.Error.Output(2, fmt.Sprintf(format, v...))
 	if err != nil {
 		return
