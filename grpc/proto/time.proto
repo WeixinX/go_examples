@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option go_package = "./pb";
+
+package time_service;
+
+message GetRawTimeReq {
+
+}
+
+message GetRawTimeResp {
+  int64 timestamp = 1;
+}
+
+message GetFmtTimeReq {
+
+}
+
+message GetFmtTimeResp {
+  string fmtTime = 1;
+}
+
+message GetFmtTimeFromRawReq {
+  int64 timestamp = 1;
+}
+
+message GetFmtTimeFromRawResp {
+  string fmtTime = 1;
+}
+
+
+service TimeServer {
+  rpc GetRawTime (GetRawTimeReq) returns (GetRawTimeResp) {}
+  rpc GetFmtTime (GetFmtTimeReq) returns (GetFmtTimeResp) {}
+  rpc GetFmtTimeFromRaw (GetFmtTimeFromRawReq) returns (GetFmtTimeFromRawResp) {}
+
+}
